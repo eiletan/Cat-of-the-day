@@ -1,0 +1,18 @@
+.root{
+    -fx-background-color: #7CAFC2;
+    -fx-font-size: 20pt;
+    -fx-font-weight: bold;
+
+}
+
+
+
+#title{
+    -fx-font-style: italic;
+}
+
+#desc{
+    -fx-font-size: 10pt;
+    -fx-font-family: "Calibri";
+
+}

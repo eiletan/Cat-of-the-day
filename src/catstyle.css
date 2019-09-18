@@ -1,0 +1,17 @@
+.root{
+    -fx-background-color: #7CAFC2;
+    -fx-font-size: 18pt;
+    -fx-font-weight: bold;
+}
+
+#title{
+   -fx-font-size: 32px;
+   -fx-font-family: "Arial Black";
+   -fx-fill: #818181;
+   -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+}
+
+#inst{
+    -fx-font-style: italic;
+    -fx-text-align: center;
+}
