@@ -6,19 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c90fd02d-ffd3-4874-b577-c052f9534210" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/json_simple_1_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/Cat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CAT.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CAT.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json-simple-1.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAT/catstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAT/catstyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Capplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Capplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/catstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/catstyle.css" afterDir="false" />
-    </list>
+    <list default="true" id="c90fd02d-ffd3-4874-b577-c052f9534210" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
