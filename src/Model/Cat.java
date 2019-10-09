@@ -1,4 +1,4 @@
-package UI;
+package Model;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
