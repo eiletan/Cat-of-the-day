@@ -162,6 +162,7 @@ public class Capplication extends Application {
     }
 
     // API code adapted from CPSC 210 edx page, which in turn was from http://zetcode.com/articles/javareadwebpage/
+    // EFFECTS: Initializes a list of breeds with data taken from the API
     private static void initializeBreedList() throws IOException {
         BufferedReader br = null;
 
@@ -224,6 +225,9 @@ public class Capplication extends Application {
     }
 
     // Code handling the image link from stackoverflow
+    // REQUIRES: Cat is not null
+    // MODIFIES: This
+    // EFFECTS: Creates an image from the cat's image link and sets it in the field
     private static void generateImage(Cat cat) throws IOException{
         String url = cat.getCaturl().toString();
         URLConnection openConnection = new URL(url).openConnection();

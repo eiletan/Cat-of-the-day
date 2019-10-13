@@ -6,7 +6,12 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c90fd02d-ffd3-4874-b577-c052f9534210" name="Default" comment="" />
+    <list default="true" id="c90fd02d-ffd3-4874-b577-c052f9534210" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAT/Model/Cat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAT/Model/Cat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Capplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Capplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Cat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Cat.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

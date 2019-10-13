@@ -26,6 +26,7 @@ public class Cat {
 
 
     // API code adapted from CPSC 210 edx page, which in turn was from http://zetcode.com/articles/javareadwebpage/
+    // EFFECTS: Initializes Cat object fields with values taken from the API data
     private void cathelper() throws IOException{
 
         BufferedReader br = null;
