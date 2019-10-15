@@ -32,6 +32,7 @@ import java.util.Random;
 public class Capplication extends Application {
     private static ArrayList<String> breedlist = new ArrayList<>();
     private static int breednum;
+    // These do not have to be fields
     private static Image cattax;
     private static String catdesc;
     private static String catname;
