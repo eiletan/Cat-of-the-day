@@ -32,6 +32,11 @@ import java.util.Random;
 public class Capplication extends Application {
     private static ArrayList<String> breedlist = new ArrayList<>();
     private static int breednum;
+
+    private int gridgap = 10;
+    private int padding = 25;
+    private int windowwidth = 600;
+    private int windowheight = 550;
     // These do not have to be fields
     private static Image cattax;
     private static String catdesc;
@@ -42,34 +47,26 @@ public class Capplication extends Application {
     public void start(Stage primaryStage) throws Exception {
     primaryStage.setTitle("Purrfect");
 
-    GridPane grid = new GridPane();
-    grid.setAlignment(Pos.CENTER);
-    grid.setHgap(10);
-    grid.setVgap(10);
-    grid.setPadding(new Insets(25, 25, 25, 25));
+    GridPane grid = gridInit();
 
-    Scene scene = new Scene(grid, 600, 550);
-    primaryStage.setScene(scene);
-    Text title = new Text("Welcome");
-    title.setFont(Font.font("Calibri", FontWeight.NORMAL, 20));
-//    grid.setGridLinesVisible(true);
-    grid.add(title,15,0,1,1);
-    Text inst = new Text("Press the button below to get an image of a cat!");
-    inst.setFont(Font.font("Calibri", FontWeight.NORMAL, 20));
-    grid.add(inst,0,1,30,1);
-    Button catb = new Button("Cat Tax");
+    Scene scene = sceneInit(primaryStage,grid);
     scene.getStylesheets().add("catstyle.css");
+    Text title = textInit("Welcome","Calibri", FontWeight.NORMAL,20);
+    Text inst = textInit("Press the button below to get an image of a cat!","Calibri",FontWeight.NORMAL,20);
+//    grid.setGridLinesVisible(true);
+
+    grid.add(title,15,0,1,1);
+    grid.add(inst,0,1,30,1);
+
+    Button catb = new Button("CAT");
     title.setId("title");
     inst.setId("inst");
 
     Button back = new Button("Back");
 
-    back.setOnAction(new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent event) {
-            primaryStage.setScene(scene);
-        }
-    });
+    buttonHandler(primaryStage,scene,back);
+
+
 
     grid.add(catb,15,2,1,1);
 
@@ -89,19 +86,13 @@ public class Capplication extends Application {
             }
 
 
-                GridPane grid = new GridPane();
-                grid.setAlignment(Pos.CENTER);
-                grid.setHgap(10);
-                grid.setVgap(10);
-                grid.setPadding(new Insets(25, 25, 25, 25));
+                GridPane grid = gridInit();
 
 
-                Text name = new Text(catname);
-                name.setFont(Font.font("Calibri", FontWeight.NORMAL, 20));
+                Text name = textInit(catname,"Calibri",FontWeight.NORMAL,20);
                 name.setId("title");
 
-                Text desc = new Text(catdesc);
-                desc.setFont(Font.font("Calibri", FontWeight.NORMAL, 10));
+
                 Label ldesc = new Label(catdesc);
                 ldesc.setWrapText(true);
                 ldesc.setId("desc");
@@ -121,8 +112,6 @@ public class Capplication extends Application {
 
                 imageView.setFitHeight(250);
 
-
-
                 imageView.setPreserveRatio(true);
 
 
@@ -131,20 +120,12 @@ public class Capplication extends Application {
 ;
                 System.out.println(catname);
 
-
                 Scene scene = new Scene(grid, 600, 550);
                 scene.getStylesheets().add("catstyle2.css");
 
-
-
-
-
-
                 primaryStage.setTitle("Your cat tax form has been approved");
 
-
                 primaryStage.setScene(scene);
-
 
                 primaryStage.show();
 
@@ -229,7 +210,7 @@ public class Capplication extends Application {
     // REQUIRES: Cat is not null
     // MODIFIES: This
     // EFFECTS: Creates an image from the cat's image link and sets it in the field
-    private static void generateImage(Cat cat) throws IOException{
+    private void generateImage(Cat cat) throws IOException{
         String url = cat.getCaturl().toString();
         URLConnection openConnection = new URL(url).openConnection();
         openConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
@@ -238,25 +219,42 @@ public class Capplication extends Application {
         cattax = image;
     }
 
-    private static void generateDesc(Cat cat){
+    private void generateDesc(Cat cat){
         catdesc = cat.getDesc();
     }
 
-    private static void generateName(Cat cat){
+    private void generateName(Cat cat){
         catname = cat.getName();
     }
 
-    private static boolean refresh()throws IOException{
-        i++;
-        System.out.println("i: " +i);
-        if(i % 5 == 0){
-            i = 0;
-            Cat newcat = new Cat(selectBreed());
-            generateName(newcat);
-            generateDesc(newcat);
-            generateImage(newcat);
-            return true;
-        }
-        return false;
+    private GridPane gridInit() {
+        GridPane grid = new GridPane();
+        grid.setAlignment(Pos.CENTER);
+        grid.setHgap(gridgap);
+        grid.setVgap(gridgap);
+        grid.setPadding(new Insets(padding,padding,padding,padding));
+        return grid;
     }
+
+    private Scene sceneInit(Stage primaryStage, GridPane grid) {
+        Scene scene = new Scene(grid,windowwidth,windowheight);
+        primaryStage.setScene(scene);
+        return scene;
+    }
+
+    private Text textInit(String message, String font, FontWeight weight, int textsize) {
+        Text text = new Text(message);
+        text.setFont(Font.font(font,weight,textsize));
+        return text;
+    }
+
+    private void buttonHandler(Stage primaryStage, Scene scene, Button button) {
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                primaryStage.setScene(scene);
+            }
+        });
+    }
+
 }

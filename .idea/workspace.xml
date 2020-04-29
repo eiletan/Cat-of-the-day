@@ -7,12 +7,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c90fd02d-ffd3-4874-b577-c052f9534210" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Model/CatHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/hamcrest_core_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/junit_4_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Parser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Testing/ParserTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAT.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CAT.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAT/Model/Cat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAT/Model/Cat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAT/Model/CatHandler.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Capplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Capplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Cat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Cat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/CatHandler.java" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,8 +49,9 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="C:/Program Files/JetBrains/IntelliJ IDEA 2019.3.2/lib/hamcrest-core-1.3.jar!/" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -105,6 +114,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ParserTests.testNested" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CAT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Testing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Testing" />
+      <option name="MAIN_CLASS_NAME" value="Testing.ParserTests" />
+      <option name="METHOD_NAME" value="testNested" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -133,10 +159,12 @@
     <list>
       <item itemvalue="Application.main" />
       <item itemvalue="Application.Capplication" />
+      <item itemvalue="JUnit.ParserTests.testNested" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Capplication" />
+        <item itemvalue="JUnit.ParserTests.testNested" />
       </list>
     </recent_temporary>
   </component>
@@ -165,5 +193,26 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Model/Parser.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Model/Parser.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Model/Parser.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
