@@ -24,6 +24,7 @@ public class Cat {
     // EFFECTS: Initializes Cat object fields with values taken from the API data
     private void cathelper() {
         try {
+            catparser.callCATAPI("https://api.thecatapi.com/v1/images/search?breed_ids=" + this.breedID);
             catparser.parseCat(this.breedID);
         } catch (IOException io) {
             System.out.println("IOException caught");

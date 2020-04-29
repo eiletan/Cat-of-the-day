@@ -11,19 +11,19 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 public class Parser {
+    private String key;
 
     public Parser() {
-
+        key = "4654f6ca-0eb3-4f4d-b314-6e8623019cf6";
     }
 
-    // Makes the call to the API
+    // Makes the call to the API and returns the JSON response as a string
     public void parseCat(String breedID) throws IOException {
         BufferedReader br = null;
 
         try {
-            String apikey = "4654f6ca-0eb3-4f4d-b314-6e8623019cf6";
             String apiurl = "https://api.thecatapi.com/v1/images/search?breed_ids=" + breedID + "&api_key=";
-            String theURL=apiurl+apikey;
+            String theURL=apiurl+key;
             URL url = new URL(theURL);
             br = new BufferedReader(new InputStreamReader(url.openStream()));
 
@@ -89,11 +89,42 @@ public class Parser {
         }
     }
 
+    public String callCATAPI(String AURL) throws IOException {
+        BufferedReader br = null;
+        StringBuilder sb = new StringBuilder();
+
+        try {
+            String apikey = "4654f6ca-0eb3-4f4d-b314-6e8623019cf6";
+            String apiurl = AURL + "&api_key=";
+            String theURL=apiurl+apikey;
+            URL url = new URL(theURL);
+            br = new BufferedReader(new InputStreamReader(url.openStream()));
+
+            String line;
+
+            while ((line = br.readLine()) != null) {
+//
+                sb.append(line);
+                sb.append(System.lineSeparator());
+
+
+            }
+
+        } finally {
+
+            if (br != null) {
+                br.close();
+            }
+        }
+        return sb.toString();
+    }
+
+
 
     // returns the json object in which the desired selector is found
     // Using get, check if the specified target value is present in the current JSONObject, if not, get all its values and recurse for each JSONObject present
     // switch on type code smell here, however I am using an imported JSON library so I cannot fix this
-    private JSONObject recursor(Object jsobj,String target) {
+    public JSONObject recursor(Object jsobj,String target) {
         if (jsobj instanceof JSONObject) {
             JSONObject search = (JSONObject) jsobj;
             if (search.get(target) != null) {
@@ -123,6 +154,18 @@ public class Parser {
             }
         }
         return null;
+    }
+
+    public Object parseResponse (String json) {
+        JSONParser parser = new JSONParser();
+        try {
+            Object obj = parser.parse(json);
+            return obj;
+        } catch (ParseException pe) {
+            System.out.println("position: " + pe.getPosition());
+            System.out.println(pe);
+            return null;
+        }
     }
 
 }

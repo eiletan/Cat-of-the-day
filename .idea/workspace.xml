@@ -7,20 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c90fd02d-ffd3-4874-b577-c052f9534210" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/hamcrest_core_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/junit_4_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Parser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Testing/ParserTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CAT.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CAT.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAT/Model/Cat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAT/Model/Cat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAT/Model/CatHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Capplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Capplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAT/Model/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAT/Model/Parser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAT/Testing/ParserTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAT/Testing/ParserTests.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Cat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Cat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/CatHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Testing/ParserTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Testing/ParserTests.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +66,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Capplication">
+  <component name="RunManager" selected="JUnit.ParserTests">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -114,6 +107,39 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ParserTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CAT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Testing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Testing" />
+      <option name="MAIN_CLASS_NAME" value="Testing.ParserTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ParserTests.testGetList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CAT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Testing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Testing" />
+      <option name="MAIN_CLASS_NAME" value="Testing.ParserTests" />
+      <option name="METHOD_NAME" value="testGetList" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ParserTests.testNested" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CAT" />
       <extension name="coverage">
@@ -125,6 +151,23 @@
       <option name="PACKAGE_NAME" value="Testing" />
       <option name="MAIN_CLASS_NAME" value="Testing.ParserTests" />
       <option name="METHOD_NAME" value="testNested" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ParserTests.testNesteddesc" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CAT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Testing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Testing" />
+      <option name="MAIN_CLASS_NAME" value="Testing.ParserTests" />
+      <option name="METHOD_NAME" value="testNesteddesc" />
       <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
@@ -160,9 +203,15 @@
       <item itemvalue="Application.main" />
       <item itemvalue="Application.Capplication" />
       <item itemvalue="JUnit.ParserTests.testNested" />
+      <item itemvalue="JUnit.ParserTests.testNesteddesc" />
+      <item itemvalue="JUnit.ParserTests" />
+      <item itemvalue="JUnit.ParserTests.testGetList" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ParserTests" />
+        <item itemvalue="JUnit.ParserTests.testNesteddesc" />
+        <item itemvalue="JUnit.ParserTests.testGetList" />
         <item itemvalue="Application.Capplication" />
         <item itemvalue="JUnit.ParserTests.testNested" />
       </list>
@@ -199,11 +248,6 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Model/Parser.java</url>
-          <line>19</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Model/Parser.java</url>
           <line>53</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
@@ -211,6 +255,21 @@
           <url>file://$PROJECT_DIR$/src/Model/Parser.java</url>
           <line>62</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Model/Cat.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/GUI/Capplication.java</url>
+          <line>152</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/GUI/Capplication.java</url>
+          <line>197</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
