@@ -13,6 +13,7 @@ public class CatHandler {
     public CatHandler() {
         this.breedIDs = new ArrayList<>();
         this.catparser = new Parser();
+        this.initializeBreedList();
     }
 
     private void initializeBreedList() {
