@@ -166,4 +166,14 @@ public class Parser {
         }
     }
 
+    public Object caller(String url) {
+        try {
+            String temp = callCATAPI(url);
+            return parseResponse(temp);
+        } catch (IOException io) {
+            System.out.println("Failed to call the cat api");
+        }
+        return null;
+    }
+
 }

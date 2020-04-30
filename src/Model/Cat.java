@@ -23,7 +23,7 @@ public class Cat {
     // API code adapted from CPSC 210 edx page, which in turn was from http://zetcode.com/articles/javareadwebpage/
     // EFFECTS: Initializes Cat object fields with values taken from the API data
     private void cathelper() {
-        Object response = caller();
+        Object response = catparser.caller("https://api.thecatapi.com/v1/images/search?breed_ids=" + this.breedID);
         JSONObject descobj = catparser.recursor(response,"description");
         JSONObject nameobj = catparser.recursor(response,"name");
         JSONObject urlobj = catparser.recursor(response,"url");
@@ -52,15 +52,5 @@ public class Cat {
 
     public int getImageheight(){
         return imageheight;
-    }
-
-    private Object caller() {
-        try {
-            String temp = catparser.callCATAPI("https://api.thecatapi.com/v1/images/search?breed_ids=" + this.breedID);
-            return catparser.parseResponse(temp);
-        } catch (IOException io) {
-            System.out.println("Failed to call the cat api");
-        }
-        return null;
     }
 }
