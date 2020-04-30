@@ -7,13 +7,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c90fd02d-ffd3-4874-b577-c052f9534210" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Exceptions/RestartException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAT/Model/Cat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAT/Model/Cat.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAT/Model/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAT/Model/Parser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAT/Testing/ParserTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAT/Testing/ParserTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAT/UI/main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAT/UI/main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Capplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Capplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Cat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Cat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Testing/ParserTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Testing/ParserTests.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -66,7 +68,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ParserTests">
+  <component name="RunManager" selected="Application.Capplication">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -209,10 +211,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Capplication" />
         <item itemvalue="JUnit.ParserTests" />
         <item itemvalue="JUnit.ParserTests.testNesteddesc" />
         <item itemvalue="JUnit.ParserTests.testGetList" />
-        <item itemvalue="Application.Capplication" />
         <item itemvalue="JUnit.ParserTests.testNested" />
       </list>
     </recent_temporary>
@@ -258,18 +260,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Model/Cat.java</url>
-          <line>26</line>
+          <line>25</line>
           <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/GUI/Capplication.java</url>
-          <line>152</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/GUI/Capplication.java</url>
-          <line>197</line>
-          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

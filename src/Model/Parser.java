@@ -106,8 +106,6 @@ public class Parser {
 //
                 sb.append(line);
                 sb.append(System.lineSeparator());
-
-
             }
 
         } finally {

@@ -211,7 +211,7 @@ public class Capplication extends Application {
     // MODIFIES: This
     // EFFECTS: Creates an image from the cat's image link and sets it in the field
     private void generateImage(Cat cat) throws IOException{
-        String url = cat.getCaturl().toString();
+        String url = cat.getCaturl();
         URLConnection openConnection = new URL(url).openConnection();
         openConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
 
