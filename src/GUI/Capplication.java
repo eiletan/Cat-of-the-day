@@ -2,6 +2,7 @@ package GUI;
 
 import Model.Cat;
 import Model.CatHandler;
+import Model.ImageHandler;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,21 +21,13 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
-import java.net.URLConnection;
 
 public class Capplication extends Application {
-    private static int breednum;
 
     private int gridgap = 10;
     private int padding = 25;
     private int windowwidth = 600;
     private int windowheight = 550;
-    // These do not have to be fields
-    private static Image cattax;
-    private static String catdesc;
-    private static String catname;
-    private static int i = 0;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -67,35 +60,10 @@ public class Capplication extends Application {
     primaryStage.show();
 
     }
-    public static void main(String args[])throws IOException{
+    public static void main(String args[]){
         launch(args);
     }
 
-    // API code adapted from CPSC 210 edx page, which in turn was from http://zetcode.com/articles/javareadwebpage/
-    // EFFECTS: Initializes a list of breeds with data taken from the API
-
-
-
-    // Code handling the image link from stackoverflow
-    // REQUIRES: Cat is not null
-    // MODIFIES: This
-    // EFFECTS: Creates an image from the cat's image link and sets it in the field
-    private void generateImage(Cat cat) throws IOException{
-        String url = cat.getCaturl();
-        URLConnection openConnection = new URL(url).openConnection();
-        openConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
-
-        Image image = new Image(openConnection.getInputStream());
-        cattax = image;
-    }
-
-    private void generateDesc(Cat cat){
-        catdesc = cat.getDesc();
-    }
-
-    private void generateName(Cat cat){
-        catname = cat.getName();
-    }
 
     private GridPane gridInit() {
         GridPane grid = new GridPane();
@@ -128,6 +96,7 @@ public class Capplication extends Application {
     }
 
     private void mainButtonHandler(Stage primaryStage, Button button,Button back) {
+
         button.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -137,40 +106,39 @@ public class Capplication extends Application {
                     CatHandler ch = new CatHandler();
                     String breedid = ch.selectBreed();
                     Cat grumpy = new Cat(breedid);
-                    generateImage(grumpy);
-                    generateDesc(grumpy);
-                    generateName(grumpy);
+                    display(back, primaryStage, grumpy);
                 }
                 catch(IOException io){
                     System.out.println("oi");
                 }
-                display(back, primaryStage);
             }
         });
     }
 
-    private void display(Button back, Stage primaryStage) {
+    private void display(Button back, Stage primaryStage,Cat cat) throws IOException {
         GridPane grid = gridInit();
 
 
-        Text name = textInit(catname,"Calibri", FontWeight.NORMAL,20);
+        Text name = textInit(cat.getName(),"Calibri", FontWeight.NORMAL,20);
         name.setId("title");
 
 
-        Label ldesc = new Label(catdesc);
+        Label ldesc = new Label(cat.getDesc());
         ldesc.setWrapText(true);
         ldesc.setId("desc");
 
         addToGrid(grid, name, 0, 0, 1,1);
         addToGrid(grid,ldesc,0,1,30,2);
 
-        addImage(back, primaryStage, grid);
+        addImage(back, primaryStage, grid, cat);
     }
 
     // Image code from https://www.tutorialspoint.com/javafx/javafx_images.htm
-    private void addImage(Button back, Stage primaryStage, GridPane grid) {
+    private void addImage(Button back, Stage primaryStage, GridPane grid, Cat cat) throws IOException {
         ImageView imageView = new ImageView();
-        imageView.setImage(cattax);
+        ImageHandler imghan = new ImageHandler(cat.getCaturl());
+        Image image = imghan.generateImage();
+        imageView.setImage(image);
 
 
         imageView.setX(300);
@@ -185,7 +153,7 @@ public class Capplication extends Application {
         addToGrid(grid,imageView,0,3,30,30);
         addToGrid(grid,back,32,31,1,1);
 
-        System.out.println(catname);
+        System.out.println(cat.getName());
 
         Scene scene = new Scene(grid, 600, 550);
         scene.getStylesheets().add("catstyle2.css");

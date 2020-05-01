@@ -7,14 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c90fd02d-ffd3-4874-b577-c052f9534210" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Model/ImageHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAT/GUI/Capplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAT/Model/CatHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAT/Model/CatHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Capplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Capplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/CatHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/CatHandler.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
