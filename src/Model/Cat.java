@@ -1,8 +1,7 @@
 package Model;
 
+import Exceptions.RestartException;
 import org.json.simple.JSONObject;
-
-import java.io.IOException;
 
 public class Cat {
     private String caturl;
@@ -13,7 +12,7 @@ public class Cat {
     private String name;
     private Parser catparser;
 
-    public Cat(String breedID)throws IOException{
+    public Cat(String breedID)throws RestartException{
         this.breedID = breedID;
         this.catparser = new Parser();
         cathelper();
@@ -22,7 +21,7 @@ public class Cat {
 
     // API code adapted from CPSC 210 edx page, which in turn was from http://zetcode.com/articles/javareadwebpage/
     // EFFECTS: Initializes Cat object fields with values taken from the API data
-    private void cathelper() {
+    private void cathelper() throws RestartException {
         Object response = catparser.caller("https://api.thecatapi.com/v1/images/search?breed_ids=" + this.breedID);
         JSONObject descobj = catparser.recursor(response,"description");
         JSONObject nameobj = catparser.recursor(response,"name");
@@ -31,7 +30,7 @@ public class Cat {
         this.desc = descobj.get("description").toString();
         this.name = nameobj.get("name").toString();
         this.caturl = urlobj.get("url").toString();
-
+        
     }
 
     public String getCaturl(){

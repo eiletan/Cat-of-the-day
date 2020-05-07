@@ -1,5 +1,6 @@
 package GUI;
 
+import Exceptions.RestartException;
 import Model.Cat;
 import Model.CatHandler;
 import Model.ImageHandler;
@@ -53,7 +54,7 @@ public class Capplication extends Application {
 
     addToGrid(grid,catb,15,2,1,1);
 
-    mainButtonHandler(primaryStage, catb, back);
+    mainButtonHandler(primaryStage, catb, back,scene);
 
 
 
@@ -95,7 +96,7 @@ public class Capplication extends Application {
         });
     }
 
-    private void mainButtonHandler(Stage primaryStage, Button button,Button back) {
+    private void mainButtonHandler(Stage primaryStage, Button button,Button back, Scene scene) {
 
         button.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -109,7 +110,10 @@ public class Capplication extends Application {
                     display(back, primaryStage, grumpy);
                 }
                 catch(IOException io){
-                    System.out.println("oi");
+                    initializeErrorScreen(primaryStage, scene, "Cat image could not be retrieved!");
+                }
+                catch(RestartException re) {
+                    initializeErrorScreen(primaryStage,scene, "The cat could not be retrieved!");
                 }
             }
         });
@@ -153,7 +157,6 @@ public class Capplication extends Application {
         addToGrid(grid,imageView,0,3,30,30);
         addToGrid(grid,back,32,31,1,1);
 
-        System.out.println(cat.getName());
 
         Scene scene = new Scene(grid, 600, 550);
         scene.getStylesheets().add("catstyle2.css");
@@ -169,4 +172,18 @@ public class Capplication extends Application {
         grid.add(node, i, i2, i3, i4);
     }
 
+    private void initializeErrorScreen(Stage primaryStage, Scene back, String message) {
+        GridPane grid = gridInit();
+
+        Scene scene = sceneInit(primaryStage,grid);
+        scene.getStylesheets().add("catstyle.css");
+        Text title = textInit("Error! " + message,"Calibri", FontWeight.NORMAL,20);
+        Text inst = textInit("Please press the back button and try again!","Calibri",FontWeight.NORMAL,20);
+
+        addToGrid(grid, title, 15, 0, 1,1);
+        addToGrid(grid, inst, 15, 1, 30,1);
+        Button backbtn = new Button("Back");
+        addToGrid(grid,backbtn,15,2,30,1);
+        buttonHandler(primaryStage,back,backbtn);
+    }
 }

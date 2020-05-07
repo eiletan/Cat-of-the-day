@@ -1,5 +1,6 @@
 package Model;
 
+import Exceptions.RestartException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -166,14 +167,14 @@ public class Parser {
         }
     }
 
-    public Object caller(String url) {
+    public Object caller(String url) throws RestartException {
         try {
             String temp = callCATAPI(url);
             return parseResponse(temp);
         } catch (IOException io) {
             System.out.println("Failed to call the cat api");
+            throw new RestartException();
         }
-        return null;
     }
 
 }
