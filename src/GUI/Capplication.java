@@ -1,11 +1,15 @@
 package GUI;
 
-import UI.Cat;
+import Exceptions.RestartException;
+import Model.Cat;
+import Model.CatHandler;
+import Model.ImageHandler;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,242 +20,170 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.Random;
 
 public class Capplication extends Application {
-    private static ArrayList<String> breedlist = new ArrayList<>();
-    private static int breednum;
-    private static Image cattax;
-    private static String catdesc;
-    private static String catname;
-    private static int i = 0;
+
+    private int gridgap = 10;
+    private int padding = 25;
+    private int windowwidth = 600;
+    private int windowheight = 550;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
     primaryStage.setTitle("Purrfect");
 
-    GridPane grid = new GridPane();
-    grid.setAlignment(Pos.CENTER);
-    grid.setHgap(10);
-    grid.setVgap(10);
-    grid.setPadding(new Insets(25, 25, 25, 25));
+    GridPane grid = gridInit();
 
-    Scene scene = new Scene(grid, 600, 550);
-    primaryStage.setScene(scene);
-    Text title = new Text("Welcome");
-    title.setFont(Font.font("Calibri", FontWeight.NORMAL, 20));
-//    grid.setGridLinesVisible(true);
-    grid.add(title,15,0,1,1);
-    Text inst = new Text("Press the button below to get an image of a cat!");
-    inst.setFont(Font.font("Calibri", FontWeight.NORMAL, 20));
-    grid.add(inst,0,1,30,1);
-    Button catb = new Button("Cat Tax");
+    Scene scene = sceneInit(primaryStage,grid);
     scene.getStylesheets().add("catstyle.css");
+    Text title = textInit("Welcome","Calibri", FontWeight.NORMAL,20);
+    Text inst = textInit("Press the button below to get an image of a cat!","Calibri",FontWeight.NORMAL,20);
+
+    addToGrid(grid, title, 15, 0, 1,1);
+    addToGrid(grid, inst, 0, 1, 30,1);
+
+    Button catb = new Button("CAT");
     title.setId("title");
     inst.setId("inst");
 
     Button back = new Button("Back");
 
-    back.setOnAction(new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent event) {
-            primaryStage.setScene(scene);
-        }
-    });
+    buttonHandler(primaryStage,scene,back);
 
-    grid.add(catb,15,2,1,1);
+    addToGrid(grid,catb,15,2,1,1);
 
-    catb.setOnAction(new EventHandler<ActionEvent>() {
-
-        @Override
-        public void handle(ActionEvent e){
-
-            try {
-                Cat grumpy = new Cat(selectBreed());
-                generateImage(grumpy);
-                generateDesc(grumpy);
-                generateName(grumpy);
-            }
-            catch(IOException io){
-                System.out.println("oi");
-            }
-
-
-                GridPane grid = new GridPane();
-                grid.setAlignment(Pos.CENTER);
-                grid.setHgap(10);
-                grid.setVgap(10);
-                grid.setPadding(new Insets(25, 25, 25, 25));
-
-
-                Text name = new Text(catname);
-                name.setFont(Font.font("Calibri", FontWeight.NORMAL, 20));
-                name.setId("title");
-
-                Text desc = new Text(catdesc);
-                desc.setFont(Font.font("Calibri", FontWeight.NORMAL, 10));
-                Label ldesc = new Label(catdesc);
-                ldesc.setWrapText(true);
-                ldesc.setId("desc");
-
-                grid.add(name, 0, 0, 1, 1);
-                grid.add(ldesc, 0, 1, 30, 2);
-
-
-                // Image code from https://www.tutorialspoint.com/javafx/javafx_images.htm
-                ImageView imageView = new ImageView();
-                imageView.setImage(cattax);
-
-
-                imageView.setX(300);
-                imageView.setY(200);
-
-
-                imageView.setFitHeight(250);
-
-
-
-                imageView.setPreserveRatio(true);
-
-
-                grid.add(imageView, 0, 3, 30, 30);
-                grid.add(back,32,31,1,1);
-;
-                System.out.println(catname);
-
-
-                Scene scene = new Scene(grid, 600, 550);
-                scene.getStylesheets().add("catstyle2.css");
-
-
-
-
-
-
-                primaryStage.setTitle("Your cat tax form has been approved");
-
-
-                primaryStage.setScene(scene);
-
-
-                primaryStage.show();
-
-
-            }
-    });
+    mainButtonHandler(primaryStage, catb, back,scene);
 
 
 
     primaryStage.show();
 
     }
-    public static void main(String args[])throws IOException{
-        initializeBreedList();
+    public static void main(String args[]){
         launch(args);
     }
 
-    // API code adapted from CPSC 210 edx page, which in turn was from http://zetcode.com/articles/javareadwebpage/
-    private static void initializeBreedList() throws IOException {
-        BufferedReader br = null;
 
-        try {
-            String apikey = "4654f6ca-0eb3-4f4d-b314-6e8623019cf6";
-            String catapi = "https://api.thecatapi.com/v1/breeds?api_key=";
-            String theURL = catapi + apikey;
-            URL url = new URL(theURL);
-            br = new BufferedReader(new InputStreamReader(url.openStream()));
+    private GridPane gridInit() {
+        GridPane grid = new GridPane();
+        grid.setAlignment(Pos.CENTER);
+        grid.setHgap(gridgap);
+        grid.setVgap(gridgap);
+        grid.setPadding(new Insets(padding,padding,padding,padding));
+        return grid;
+    }
 
-            String line;
+    private Scene sceneInit(Stage primaryStage, GridPane grid) {
+        Scene scene = new Scene(grid,windowwidth,windowheight);
+        primaryStage.setScene(scene);
+        return scene;
+    }
 
-            StringBuilder sb = new StringBuilder();
+    private Text textInit(String message, String font, FontWeight weight, int textsize) {
+        Text text = new Text(message);
+        text.setFont(Font.font(font,weight,textsize));
+        return text;
+    }
 
-
-
-            while ((line = br.readLine()) != null) {
-
-                sb.append(line);
-                sb.append(System.lineSeparator());
-
-
+    private void buttonHandler(Stage primaryStage, Scene scene, Button button) {
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                primaryStage.setScene(scene);
             }
+        });
+    }
 
+    private void mainButtonHandler(Stage primaryStage, Button button,Button back, Scene scene) {
 
-            JSONParser parser = new JSONParser();
+        button.setOnAction(new EventHandler<ActionEvent>() {
 
+            @Override
+            public void handle(ActionEvent e){
 
-            try {
-                Object obj = parser.parse(sb.toString());
-                JSONArray array = (JSONArray) obj;
-
-                breednum = array.size();
-
-                for (int i = 0; i < array.size(); i++) {
-                    JSONObject obj2 = (JSONObject) array.get(i);
-                    breedlist.add(obj2.get("id").toString());
+                try {
+                    CatHandler ch = new CatHandler();
+                    String breedid = ch.selectBreed();
+                    Cat grumpy = new Cat(breedid);
+                    display(back, primaryStage, grumpy);
                 }
-
-
-            } catch (ParseException pe) {
-
-                System.out.println("position: " + pe.getPosition());
-                System.out.println(pe);
+                catch(IOException io){
+                    initializeErrorScreen(primaryStage, scene, "Cat image could not be retrieved!");
+                }
+                catch(RestartException re) {
+                    initializeErrorScreen(primaryStage,scene, "The cat could not be retrieved!");
+                }
             }
-
-
-        } finally {
-
-            if (br != null) {
-                br.close();
-            }
-        }
+        });
     }
 
-    private static String selectBreed(){
-        Random rng = new Random();
-        int no = rng.nextInt(67);
-        return breedlist.get(no);
+    private void display(Button back, Stage primaryStage,Cat cat) throws IOException {
+        GridPane grid = gridInit();
+
+
+        Text name = textInit(cat.getName(),"Calibri", FontWeight.NORMAL,20);
+        name.setId("title");
+
+
+        Label ldesc = new Label(cat.getDesc());
+        ldesc.setWrapText(true);
+        ldesc.setId("desc");
+
+        addToGrid(grid, name, 0, 0, 1,1);
+        addToGrid(grid,ldesc,0,1,30,2);
+
+        addImage(back, primaryStage, grid, cat);
     }
 
-    // Code handling the image link from stackoverflow
-    private static void generateImage(Cat cat) throws IOException{
-        String url = cat.getCaturl().toString();
-        URLConnection openConnection = new URL(url).openConnection();
-        openConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
+    // Image code from https://www.tutorialspoint.com/javafx/javafx_images.htm
+    private void addImage(Button back, Stage primaryStage, GridPane grid, Cat cat) throws IOException {
+        ImageView imageView = new ImageView();
+        ImageHandler imghan = new ImageHandler(cat.getCaturl());
+        Image image = imghan.generateImage();
+        imageView.setImage(image);
 
-        Image image = new Image(openConnection.getInputStream());
-        cattax = image;
+
+        imageView.setX(300);
+        imageView.setY(200);
+
+
+        imageView.setFitHeight(250);
+
+        imageView.setPreserveRatio(true);
+
+
+        addToGrid(grid,imageView,0,3,30,30);
+        addToGrid(grid,back,32,31,1,1);
+
+
+        Scene scene = new Scene(grid, 600, 550);
+        scene.getStylesheets().add("catstyle2.css");
+
+        primaryStage.setTitle("Your cat tax form has been approved");
+
+        primaryStage.setScene(scene);
+
+        primaryStage.show();
     }
 
-    private static void generateDesc(Cat cat){
-        catdesc = cat.getDesc();
+    private void addToGrid(GridPane grid, Node node, int i, int i2, int i3, int i4) {
+        grid.add(node, i, i2, i3, i4);
     }
 
-    private static void generateName(Cat cat){
-        catname = cat.getName();
-    }
+    private void initializeErrorScreen(Stage primaryStage, Scene back, String message) {
+        GridPane grid = gridInit();
 
-    private static boolean refresh()throws IOException{
-        i++;
-        System.out.println("i: " +i);
-        if(i % 5 == 0){
-            i = 0;
-            Cat newcat = new Cat(selectBreed());
-            generateName(newcat);
-            generateDesc(newcat);
-            generateImage(newcat);
-            return true;
-        }
-        return false;
+        Scene scene = sceneInit(primaryStage,grid);
+        scene.getStylesheets().add("catstyle.css");
+        Text title = textInit("Error! " + message,"Calibri", FontWeight.NORMAL,20);
+        Text inst = textInit("Please press the back button and try again!","Calibri",FontWeight.NORMAL,20);
+
+        addToGrid(grid, title, 15, 0, 1,1);
+        addToGrid(grid, inst, 15, 1, 30,1);
+        Button backbtn = new Button("Back");
+        addToGrid(grid,backbtn,15,2,30,1);
+        buttonHandler(primaryStage,back,backbtn);
     }
 }
