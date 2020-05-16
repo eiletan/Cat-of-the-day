@@ -1,9 +1,7 @@
 package GUI;
 
 import Exceptions.RestartException;
-import Model.Cat;
-import Model.CatHandler;
-import Model.ImageHandler;
+import Model.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -32,31 +30,9 @@ public class Capplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-    primaryStage.setTitle("Purrfect");
+    primaryStage.setTitle("C A T ");
 
-    GridPane grid = gridInit();
-
-    Scene scene = sceneInit(primaryStage,grid);
-    scene.getStylesheets().add("catstyle.css");
-    Text title = textInit("Welcome","Calibri", FontWeight.NORMAL,20);
-    Text inst = textInit("Press the button below to get an image of a cat!","Calibri",FontWeight.NORMAL,20);
-
-    addToGrid(grid, title, 15, 0, 1,1);
-    addToGrid(grid, inst, 0, 1, 30,1);
-
-    Button catb = new Button("CAT");
-    title.setId("title");
-    inst.setId("inst");
-
-    Button back = new Button("Back");
-
-    buttonHandler(primaryStage,scene,back);
-
-    addToGrid(grid,catb,15,2,1,1);
-
-    mainButtonHandler(primaryStage, catb, back,scene);
-
-
+    intializeScreen(primaryStage);
 
     primaryStage.show();
 
@@ -87,7 +63,7 @@ public class Capplication extends Application {
         return text;
     }
 
-    private void buttonHandler(Stage primaryStage, Scene scene, Button button) {
+    private void backHandler(Stage primaryStage, Scene scene, Button button) {
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -96,7 +72,7 @@ public class Capplication extends Application {
         });
     }
 
-    private void mainButtonHandler(Stage primaryStage, Button button,Button back, Scene scene) {
+    private void mainButtonHandler(Stage primaryStage, Button button, Scene scene) {
 
         button.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -106,20 +82,21 @@ public class Capplication extends Application {
                 try {
                     CatHandler ch = new CatHandler();
                     String breedid = ch.selectBreed();
-                    Cat grumpy = new Cat(breedid);
-                    display(back, primaryStage, grumpy);
+                    CatFactory cf = new CatInitializer(breedid);
+                    Cat grumpy = cf.initializeCat();
+                    display(primaryStage, grumpy, scene);
                 }
                 catch(IOException io){
-                    initializeErrorScreen(primaryStage, scene, "Cat image could not be retrieved!");
+                    initializeScreen(primaryStage, scene, "Error! Cat image could not be retrieved!");
                 }
                 catch(RestartException re) {
-                    initializeErrorScreen(primaryStage,scene, "The cat could not be retrieved!");
+                    initializeScreen(primaryStage,scene, "Error! The cat could not be retrieved!");
                 }
             }
         });
     }
 
-    private void display(Button back, Stage primaryStage,Cat cat) throws IOException {
+    private void display(Stage primaryStage,Cat cat, Scene iscene) throws IOException {
         GridPane grid = gridInit();
 
 
@@ -134,11 +111,22 @@ public class Capplication extends Application {
         addToGrid(grid, name, 0, 0, 1,1);
         addToGrid(grid,ldesc,0,1,30,2);
 
-        addImage(back, primaryStage, grid, cat);
+        ImageView image = retrieveImage(cat);
+
+        Button back = new Button("Back");
+        backHandler(primaryStage,iscene,back);
+
+        addToGrid(grid,image,0,3,30,30);
+        addToGrid(grid,back,32,31,1,1);
+
+
+        Scene scene = sceneInit(primaryStage, grid);
+        scene.getStylesheets().add("catstyle2.css");
+
     }
 
     // Image code from https://www.tutorialspoint.com/javafx/javafx_images.htm
-    private void addImage(Button back, Stage primaryStage, GridPane grid, Cat cat) throws IOException {
+    private ImageView retrieveImage(Cat cat) throws IOException {
         ImageView imageView = new ImageView();
         ImageHandler imghan = new ImageHandler(cat.getCaturl());
         Image image = imghan.generateImage();
@@ -153,37 +141,45 @@ public class Capplication extends Application {
 
         imageView.setPreserveRatio(true);
 
-
-        addToGrid(grid,imageView,0,3,30,30);
-        addToGrid(grid,back,32,31,1,1);
-
-
-        Scene scene = new Scene(grid, 600, 550);
-        scene.getStylesheets().add("catstyle2.css");
-
-        primaryStage.setTitle("Your cat tax form has been approved");
-
-        primaryStage.setScene(scene);
-
-        primaryStage.show();
+        return imageView;
     }
 
     private void addToGrid(GridPane grid, Node node, int i, int i2, int i3, int i4) {
         grid.add(node, i, i2, i3, i4);
     }
 
-    private void initializeErrorScreen(Stage primaryStage, Scene back, String message) {
+    private void initializeScreen(Stage primaryStage, Scene back, String message) {
         GridPane grid = gridInit();
 
         Scene scene = sceneInit(primaryStage,grid);
         scene.getStylesheets().add("catstyle.css");
-        Text title = textInit("Error! " + message,"Calibri", FontWeight.NORMAL,20);
+        Text title = textInit( message,"Calibri", FontWeight.NORMAL,20);
         Text inst = textInit("Please press the back button and try again!","Calibri",FontWeight.NORMAL,20);
 
-        addToGrid(grid, title, 15, 0, 1,1);
-        addToGrid(grid, inst, 15, 1, 30,1);
+        addToGrid(grid, title, 15, 0, 30,1);
+        addToGrid(grid, inst, 15, 0, 30,1);
         Button backbtn = new Button("Back");
         addToGrid(grid,backbtn,15,2,30,1);
-        buttonHandler(primaryStage,back,backbtn);
+        backHandler(primaryStage,back,backbtn);
+    }
+
+    private void intializeScreen(Stage primaryStage) {
+        GridPane grid = gridInit();
+
+        Scene scene = sceneInit(primaryStage,grid);
+        scene.getStylesheets().add("catstyle.css");
+        Text title = textInit("Welcome","Calibri", FontWeight.NORMAL,20);
+        Text inst = textInit("Press the button below to get an image of a cat!","Calibri",FontWeight.NORMAL,20);
+
+        addToGrid(grid, title, 15, 0, 1,1);
+        addToGrid(grid, inst, 0, 1, 30,1);
+
+        Button catb = new Button("CAT");
+        title.setId("title");
+        inst.setId("inst");
+
+        addToGrid(grid,catb,15,2,1,1);
+
+        mainButtonHandler(primaryStage, catb ,scene);
     }
 }
